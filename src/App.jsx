@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
+import { useStateValue } from "./StateProvider/StateProvider"
 import "./App.css";
 import Checkout from "./Checkout/Checkout";
 import Header from "./Header/Header";
@@ -9,31 +10,33 @@ import Payment from './payment/Payment';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe  } from '@stripe/stripe-js';
 import Order from './Order/Order';
+import { auth } from './Firebase/Firebase';
+
 const  promise  = loadStripe (
   'pk_test_51OPYI0LK8WdHpNGUc7htFO1zOgQm1gXkhcciePB4vC1xYtsycoPfWjKhuLwPT5cyCCgHze0OO0MkluJKR1MZCwUm00csfLWoIu');
  
 function App() {
   const [count, setCount] = useState(0)
-  // const [{}, dispatch] = useStateValue();
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((authUser) => {
-  //     // console.log("THE USER IS >>> ", authUser);
-  //     if (authUser) {
-  // // the user just logged in / the user was logged in
+  const [{}, dispatch] = useStateValue();
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+      if (authUser) {
+  // the user just logged in / the user was logged in
 
-  //   dispatch({
-  //     type: 'SET_USER',
-  //     user: authUser,
-  //   });
-  // } else {
-  // // the user is logged out
-  //       dispatch({
-  //         type: 'SET_USER',
-  //         user: null,
-  //       });
-  //     }
-  //   });
-  // }, []);
+    dispatch({
+      type: 'SET_USER',
+      user: authUser,
+    });
+  } else {
+  // the user is logged out
+        dispatch({
+          type: 'SET_USER',
+          user: null,
+        });
+      }
+    });
+  }, []);
 
   return (
     <div className='App'>

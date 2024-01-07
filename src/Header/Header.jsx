@@ -1,7 +1,7 @@
 import React from 'react';
-import './Header.css';
-// import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-// import LocalGroceryStoreIcon from '@mui/icons-material'
+import './Header.css'
+import { FaCartShopping } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../StateProvider/StateProvider';
 import { auth } from '../Firebase/Firebase';
@@ -23,7 +23,7 @@ function Header() {
       </Link>
       <div className="header__search">
         <input className="header__searchInput" type="text" />
-        {/* <SearchRoundedIcon   className="header__searchIcon" /> */}
+        <FaSearch   className="header__searchIcon" />
       </div>
       <div className="header__nav">
         <Link to={!user && '/login'} className="header__clearlink">
@@ -48,7 +48,7 @@ function Header() {
         </div>
         <Link to="/checkout" className="header__clearlink">
           <div className="header__optionBasket">
-            {/* <LocalGroceryStoreIcon /> */}
+            <FaCartShopping />
             <span className="header__optionLineTwo header__basketCount">
               {basket.length}
             </span>
