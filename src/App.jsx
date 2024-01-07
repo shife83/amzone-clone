@@ -8,12 +8,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Payment from './payment/Payment';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe  } from '@stripe/stripe-js';
-
+import Order from './Order/Order';
 const  promise  = loadStripe (
   'pk_test_51OPYI0LK8WdHpNGUc7htFO1zOgQm1gXkhcciePB4vC1xYtsycoPfWjKhuLwPT5cyCCgHze0OO0MkluJKR1MZCwUm00csfLWoIu');
  
 function App() {
-  // const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0)
   // const [{}, dispatch] = useStateValue();
   // useEffect(() => {
   //   auth.onAuthStateChanged((authUser) => {
@@ -52,6 +52,7 @@ function App() {
           />
           <Route path="Checkout" element={<><Header /><Checkout /></>} />
           <Route path="/Payment" element={<><Header /><Payment /></>} />
+          <Route path="/Order" element={<><Header /><Order/></>} />
           <Route path="/" element={<><Header /><Home /></>} />
         </Routes>
       </Router>
